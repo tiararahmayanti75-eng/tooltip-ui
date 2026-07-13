@@ -1,0 +1,85 @@
+/* --- Reset & Pengaturan Dasar --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafc;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* --- Container Utama Navigasi --- */
+.nav-container {
+    background-color: #ffffff;
+    padding: 30px 50px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.navigation {
+    display: flex;
+    gap: 40px; /* Jarak antar menu navigasi */
+}
+
+/* --- Item Navigasi (Kunci Utama Positioning Tooltip) --- */
+.nav-item {
+    position: relative; /* Menjadi patokan koordinat bagi tooltip absolut di dalamnya */
+    display: inline-block;
+}
+
+/* Styling Teks Menu */
+.nav-link {
+    font-size: 1.1rem;
+    color: #64748b;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #0f172a; /* Warna teks menjadi lebih tegas saat di-hover */
+}
+
+/* --- Desain Kotak Tooltip --- */
+.tooltip {
+    position: absolute;
+    bottom: 150%; /* Mengatur letak kotak melayang tepat di atas menu */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px); /* Sentuhan center horizontal & geser ke bawah sedikit */
+    background-color: #000000; /* Warna hitam legam sesuai dengan contoh mockup */
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    white-space: nowrap; /* Mencegah teks turun ke baris baru */
+    font-weight: 500;
+    
+    /* Efek animasi transisi halus */
+    opacity: 0;
+    pointer-events: none; /* Mencegah kursor tidak sengaja menyentuh tooltip yang transparan */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* --- Membuat Segitiga Lancip di Bawah Kotak Tooltip --- */
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Menempel tepat di bawah kotak tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    /* Trik CSS Border untuk membuat segitiga mengarah ke bawah */
+    border-color: #000000 transparent transparent transparent;
+}
+
+/* --- Trigger Efek Hover --- */
+.nav-item:hover .tooltip {
+    opacity: 1; /* Munculkan tooltip menjadi terlihat */
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0); /* Animasi naik perlahan ke posisi aslinya */
+}
